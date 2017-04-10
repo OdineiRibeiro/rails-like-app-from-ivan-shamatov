@@ -10,9 +10,13 @@ class Controller
   def call
     send(action)
     self.status   = 200
-    self.headers  = { 'Content-Type' => 'text/hmtl' }
-    self.content  = ['Hello world']
+    self.headers  = { 'Content-Type' => 'text/html' }
+    self.content  = [template.result(binding)]
     self
+  end
+
+  def template
+    ERB.new(File.read(File.join(App.root, 'app', 'views', "#{self.name}", "#{self.action}.html.erb")))
   end
 
   def not_found
