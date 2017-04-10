@@ -5,3 +5,7 @@ ruby '2.4.1'
 
 gem 'puma'
 gem 'rack'
+
+group :development do
+  gem 'pry'
+end
